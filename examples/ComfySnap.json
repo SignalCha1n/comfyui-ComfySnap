@@ -1,8 +1,8 @@
 {
   "id": "aec1ea3e-fceb-4a4e-8f73-5e04301759db",
   "revision": 0,
-  "last_node_id": 22,
-  "last_link_id": 18,
+  "last_node_id": 23,
+  "last_link_id": 20,
   "nodes": [
     {
       "id": 7,
@@ -147,7 +147,7 @@
         "Node name for S&R": "KSampler"
       },
       "widgets_values": [
-        46545674249846,
+        754954075954502,
         "randomize",
         8,
         1,
@@ -274,66 +274,8 @@
         true,
         0.5,
         1,
-        854720550822366,
+        922897229812380,
         "randomize"
-      ],
-      "color": "#223",
-      "bgcolor": "#335"
-    },
-    {
-      "id": 14,
-      "type": "SnapTextOverlay",
-      "pos": [
-        1210,
-        190
-      ],
-      "size": [
-        340,
-        274
-      ],
-      "flags": {},
-      "order": 15,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "image",
-          "type": "IMAGE",
-          "link": 17
-        },
-        {
-          "name": "custom_vertical_percentage",
-          "type": "FLOAT",
-          "widget": {
-            "name": "custom_vertical_percentage"
-          },
-          "link": 13
-        }
-      ],
-      "outputs": [
-        {
-          "name": "IMAGE",
-          "type": "IMAGE",
-          "links": [
-            14
-          ]
-        }
-      ],
-      "properties": {
-        "aux_id": "SignalCha1n/ComfySnap",
-        "ver": "f2699e2b977da3e5e15017689419934d3bd2d02d",
-        "Node name for S&R": "SnapTextOverlay"
-      },
-      "widgets_values": [
-        "Your Text Here",
-        "arial.ttf",
-        0.05,
-        "custom",
-        100,
-        "#FFFFFF",
-        0.7,
-        4,
-        "#000000",
-        0.5
       ],
       "color": "#223",
       "bgcolor": "#335"
@@ -461,7 +403,7 @@
       "widgets_values": [
         "Standard Snap Low Light",
         0.5,
-        3986034771,
+        3569452628,
         "randomize"
       ],
       "color": "#223",
@@ -519,97 +461,6 @@
       ],
       "color": "#2a363b",
       "bgcolor": "#3f5159"
-    },
-    {
-      "id": 12,
-      "type": "BboxDetectorCombined_v2",
-      "pos": [
-        970,
-        -40
-      ],
-      "size": [
-        210,
-        102
-      ],
-      "flags": {},
-      "order": 13,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "bbox_detector",
-          "type": "BBOX_DETECTOR",
-          "link": 11
-        },
-        {
-          "name": "image",
-          "type": "IMAGE",
-          "link": 18
-        }
-      ],
-      "outputs": [
-        {
-          "name": "MASK",
-          "type": "MASK",
-          "links": [
-            12
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfyui-impact-pack",
-        "ver": "8.8.1",
-        "Node name for S&R": "BboxDetectorCombined_v2"
-      },
-      "widgets_values": [
-        0.5,
-        4
-      ]
-    },
-    {
-      "id": 13,
-      "type": "FaceAvoidRandomY",
-      "pos": [
-        1210,
-        -40
-      ],
-      "size": [
-        337.6000061035156,
-        178
-      ],
-      "flags": {},
-      "order": 14,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "mask",
-          "type": "MASK",
-          "link": 12
-        }
-      ],
-      "outputs": [
-        {
-          "name": "vertical_pos_100_top",
-          "type": "FLOAT",
-          "links": [
-            13
-          ]
-        }
-      ],
-      "properties": {
-        "aux_id": "SignalCha1n/ComfySnap",
-        "ver": "f2699e2b977da3e5e15017689419934d3bd2d02d",
-        "Node name for S&R": "FaceAvoidRandomY"
-      },
-      "widgets_values": [
-        0.5,
-        -30,
-        20,
-        36803831127522,
-        "randomize",
-        false
-      ],
-      "color": "#223",
-      "bgcolor": "#335"
     },
     {
       "id": 22,
@@ -730,6 +581,155 @@
       ],
       "color": "#2a363b",
       "bgcolor": "#3f5159"
+    },
+    {
+      "id": 12,
+      "type": "BboxDetectorCombined_v2",
+      "pos": [
+        970,
+        -40
+      ],
+      "size": [
+        210,
+        102
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "bbox_detector",
+          "type": "BBOX_DETECTOR",
+          "link": 11
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 18
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [
+            19
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-impact-pack",
+        "ver": "8.8.1",
+        "Node name for S&R": "BboxDetectorCombined_v2"
+      },
+      "widgets_values": [
+        0.5,
+        4
+      ]
+    },
+    {
+      "id": 14,
+      "type": "SnapTextOverlay",
+      "pos": [
+        1210,
+        190
+      ],
+      "size": [
+        340,
+        274
+      ],
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 17
+        },
+        {
+          "name": "custom_vertical_percentage",
+          "type": "FLOAT",
+          "widget": {
+            "name": "custom_vertical_percentage"
+          },
+          "link": 20
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            14
+          ]
+        }
+      ],
+      "properties": {
+        "aux_id": "SignalCha1n/ComfySnap",
+        "ver": "f2699e2b977da3e5e15017689419934d3bd2d02d",
+        "Node name for S&R": "SnapTextOverlay"
+      },
+      "widgets_values": [
+        "I bet ur playing with comfyui instead of texting me again",
+        "arial.ttf",
+        0.05,
+        "custom",
+        100,
+        "#FFFFFF",
+        0.7,
+        4,
+        "#000000",
+        0.5
+      ],
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 23,
+      "type": "FaceAvoidRandomY",
+      "pos": [
+        1210,
+        -40
+      ],
+      "size": [
+        337.6000061035156,
+        178
+      ],
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": 19
+        }
+      ],
+      "outputs": [
+        {
+          "name": "vertical_pos_100_top",
+          "type": "FLOAT",
+          "links": [
+            20
+          ]
+        }
+      ],
+      "properties": {
+        "aux_id": "SignalCha1n/comfyui-ComfySnap",
+        "ver": "3fdd01cb6032b85c9bcdfe5b8de7044a395bedca",
+        "Node name for S&R": "FaceAvoidRandomY"
+      },
+      "widgets_values": [
+        0.5,
+        0,
+        40,
+        778921733215044,
+        "randomize",
+        true
+      ],
+      "color": "#223",
+      "bgcolor": "#335"
     }
   ],
   "links": [
@@ -806,22 +806,6 @@
       "BBOX_DETECTOR"
     ],
     [
-      12,
-      12,
-      0,
-      13,
-      0,
-      "MASK"
-    ],
-    [
-      13,
-      13,
-      0,
-      14,
-      1,
-      "FLOAT"
-    ],
-    [
       14,
       14,
       0,
@@ -860,16 +844,32 @@
       12,
       1,
       "IMAGE"
+    ],
+    [
+      19,
+      12,
+      0,
+      23,
+      0,
+      "MASK"
+    ],
+    [
+      20,
+      23,
+      0,
+      14,
+      1,
+      "FLOAT"
     ]
   ],
   "groups": [],
   "config": {},
   "extra": {
     "ds": {
-      "scale": 0.6934334949441878,
+      "scale": 0.9229599817707143,
       "offset": [
-        47.01260771431134,
-        466.53218732442195
+        -534.9107807402775,
+        207.88175316149716
       ]
     },
     "frontendVersion": "1.16.8"
