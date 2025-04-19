@@ -3,7 +3,7 @@ import torch
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 import os
-from .utils import hex_to_rgb  # Changed from "utils" to ".utils" to specify local module
+from .utils import hex_to_rgb  
 
 class SnapTextOverlay:
     """
@@ -48,14 +48,14 @@ class SnapTextOverlay:
             "required": {
                 "image": ("IMAGE",),
                 "text": ("STRING", {"default": "Your Text Here", "multiline": False}),
+                "font_name": ("STRING", {"default": "arial.ttf"}),
+                "font_size_ratio": ("FLOAT", {"default": 0.05, "min": 0.01, "max": 0.2, "step": 0.005}),
                 "vertical_placement": (["top", "middle", "bottom", "custom"], {"default": "middle"}),
                 "custom_vertical_percentage": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 100.0, "step": 0.1}),
-                "text_color": ("STRING", {"default": "#FFFFFF", "multiline": False}),  # Changed from COLOR to STRING for guaranteed default
-                "font_name": ("STRING", {"default": "arial.ttf"}), # Reverted default
-                "font_size_ratio": ("FLOAT", {"default": 0.05, "min": 0.01, "max": 0.2, "step": 0.005}),
+                "text_color": ("STRING", {"default": "#FFFFFF", "multiline": False}),
                 "vertical_padding_ratio_of_size": ("FLOAT", {"default": 0.7, "min": 0.0, "max": 3.0, "step": 0.05}),
                 "line_spacing": ("INT", {"default": 4, "min": 0, "max": 50, "step": 1}),
-                "bar_color": ("STRING", {"default": "#000000", "multiline": False}),  # Changed from COLOR to STRING for guaranteed default
+                "bar_color": ("STRING", {"default": "#000000", "multiline": False}),
                 "bar_alpha": ("FLOAT", {"default": 0.5, "min": 0.0, "max": 1.0, "step": 0.01}),
             },
         }
@@ -74,9 +74,44 @@ class SnapTextOverlay:
         if len(image.shape) != 4:
             raise ValueError("Input image must be a 4D tensor with shape (batch_size, height, width, channels).")
 
-        # Add validation for font availability
-        if not os.path.exists(font_name):
-            raise FileNotFoundError(f"Font file '{font_name}' not found. Please ensure the font is available.")
+        # Improved font handling
+        font_to_use = None
+        target_font_size = max(1, int(image.shape[2] * font_size_ratio))
+        
+        # Windows font locations
+        system_fonts = os.path.join(os.environ.get('SystemRoot', 'C:\\Windows'), 'Fonts')
+        
+        # Try different font paths based on OS
+        font_paths = [
+            font_name,  # First try the exact path provided
+            os.path.join(system_fonts, font_name),  # Windows system fonts directory
+            os.path.join(os.getcwd(), font_name),  # Current working directory
+            os.path.join(os.path.dirname(os.path.abspath(__file__)), font_name),  # Same directory as this script
+            # Windows fonts
+            os.path.join(system_fonts, 'arial.ttf'),
+            os.path.join(system_fonts, 'calibri.ttf'),
+            os.path.join(system_fonts, 'segoeui.ttf'),
+            # Add any additional fonts or paths here
+        ]
+        
+        # Try each font path
+        for path in font_paths:
+            if os.path.exists(path):
+                try:
+                    font_to_use = ImageFont.truetype(path, target_font_size)
+                    print(f"Using font: {path}")
+                    break
+                except Exception as e:
+                    print(f"Failed to load font {path}: {e}")
+        
+        # If no font was loaded, use PIL's default font
+        if font_to_use is None:
+            try:
+                print("Using PIL's default font")
+                font_to_use = ImageFont.load_default()
+            except Exception as e:
+                print(f"Error loading default font: {e}")
+                # Continue without a font, text may not render correctly
 
         text = str(text); batch_size, img_height, img_width, channels = image.shape
         output_images = [];
@@ -87,21 +122,9 @@ class SnapTextOverlay:
         for i in range(batch_size):
             img_pil_rgb = Image.fromarray((image[i].cpu().numpy() * 255).astype(np.uint8)).convert('RGB')
             base_img_rgba = img_pil_rgb.convert("RGBA"); temp_draw = ImageDraw.Draw(Image.new("RGB", (1,1)))
-            target_font_size = max(1, int(img_width * font_size_ratio)); font_to_use = None; font_load_error=False
+            target_font_size = max(1, int(img_width * font_size_ratio)); font_load_error=False
 
-            try: # Simplified Font Loading
-                 font_to_use = ImageFont.truetype(font_name, target_font_size)
-            except IOError:
-                 try: font_to_use = ImageFont.load_default(target_font_size)
-                 except Exception:
-                      try: font_to_use = ImageFont.load_default()
-                      except Exception as final_e: print(f"Error: Could not load ANY default font: {final_e}"); font_load_error=True
-            except Exception as e:
-                 print(f"Error loading font: {e}")
-                 try: font_to_use = ImageFont.load_default()
-                 except Exception as final_e: print(f"Error: Could not load ANY default font: {final_e}"); font_load_error=True
-
-            if font_load_error or not font_to_use:
+            if font_to_use is None:
                  output_images.append(image[i])
                  continue
 
