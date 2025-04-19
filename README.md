@@ -24,7 +24,7 @@ Once the repository is added to the ComfyUI Manager, you will be able to install
 
 ## Included Nodes
 
-This package currently includes the following nodes, which will appear under the **"Snap"** category when adding nodes:
+This package currently includes the following nodes, which will appear under the **"ComfySnap"** category when adding nodes:
 
 ---
 
@@ -125,14 +125,14 @@ Simulates the artifacts and noise typical of early digital cameras or low-light 
 
 ### Snap Text Overlay
 ```python
-from comfy.snap_text_basic import SnapTextOverlay
+from comfy.snap_text_overlay import SnapTextOverlay
 # Example usage of SnapTextOverlay
 ```
 
 ### Basic Filters
 ```python
-from comfy.snap_filters import SnapBasicFilters
-# Example usage of SnapBasicFilters
+from comfy.snap_basic_filters import BasicFilters
+# Example usage of BasicFilters
 ```
 
 ## Dependencies

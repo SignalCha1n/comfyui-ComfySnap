@@ -3,7 +3,7 @@ import torch
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 import os
-from utils import hex_to_rgb
+from .utils import hex_to_rgb  # Changed from "utils" to ".utils" to specify local module
 
 class SnapTextOverlay:
     """
