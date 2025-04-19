@@ -50,12 +50,12 @@ class SnapTextOverlay:
                 "text": ("STRING", {"default": "Your Text Here", "multiline": False}),
                 "vertical_placement": (["top", "middle", "bottom", "custom"], {"default": "middle"}),
                 "custom_vertical_percentage": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 100.0, "step": 0.1}),
-                "text_color": ("COLOR", {"default": "#FFFFFF"}),
+                "text_color": ("STRING", {"default": "#FFFFFF", "multiline": False}),  # Changed from COLOR to STRING for guaranteed default
                 "font_name": ("STRING", {"default": "arial.ttf"}), # Reverted default
                 "font_size_ratio": ("FLOAT", {"default": 0.05, "min": 0.01, "max": 0.2, "step": 0.005}),
                 "vertical_padding_ratio_of_size": ("FLOAT", {"default": 0.7, "min": 0.0, "max": 3.0, "step": 0.05}),
                 "line_spacing": ("INT", {"default": 4, "min": 0, "max": 50, "step": 1}),
-                "bar_color": ("COLOR", {"default": "#000000"}),
+                "bar_color": ("STRING", {"default": "#000000", "multiline": False}),  # Changed from COLOR to STRING for guaranteed default
                 "bar_alpha": ("FLOAT", {"default": 0.5, "min": 0.0, "max": 1.0, "step": 0.01}),
             },
         }
