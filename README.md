@@ -5,7 +5,7 @@ A collection of custom nodes for ComfyUI designed to replicate certain visual el
 ## Metadata
 
 - **Keywords**: ComfyUI, Custom Nodes, Image Processing, Snap Effects, Filters, Overlays
-- **Repository Name**: ComfySnap
+- **Repository Name**: comfyui-ComfySnap
 
 ## Installation
 
@@ -16,7 +16,7 @@ Since this repository is not yet listed in the ComfyUI Manager, you can install 
 1. Navigate to your ComfyUI `custom_nodes` directory.
 2. Clone this repository:
     ```bash
-    git clone https://github.com/SignalCha1n/ComfySnap
+    git clone https://github.com/SignalCha1n/comfyui-ComfySnap
     ```
 3. Restart ComfyUI.
 
