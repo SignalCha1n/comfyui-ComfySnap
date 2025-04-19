@@ -26,7 +26,7 @@ class LowQualityDigitalLook:
 
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "execute"
-    CATEGORY = "snap"
+    CATEGORY = "ComfySnap"
 
     def execute(self, image: torch.Tensor, preset: str, effect_level: float = 0.5, seed: int = 0):
         effect_level = max(0.0, min(1.0, effect_level))

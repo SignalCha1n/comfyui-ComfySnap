@@ -62,7 +62,7 @@ class SnapTextOverlay:
 
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "execute"
-    CATEGORY = "snap"
+    CATEGORY = "ComfySnap"
 
     def execute(self, image: torch.Tensor, text: str, font_name: str,
                 font_size_ratio: float, vertical_padding_ratio_of_size: float,

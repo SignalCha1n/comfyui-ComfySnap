@@ -28,7 +28,7 @@ class SnapBasicFilters:
 
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "execute"
-    CATEGORY = "snap"
+    CATEGORY = "ComfySnap"
 
     def execute(self, image: torch.Tensor, filter_type: str, strength: float,
                      randomize_filter: bool, randomize_strength: bool, seed: int,

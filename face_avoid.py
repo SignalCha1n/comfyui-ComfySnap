@@ -26,7 +26,7 @@ class FaceAvoidRandomY:
     RETURN_TYPES = ("FLOAT",)
     RETURN_NAMES = ("vertical_pos_100_top",)
     FUNCTION = "execute"
-    CATEGORY = "snap"
+    CATEGORY = "ComfySnap"
 
     def execute(self, mask: torch.Tensor, centroid_threshold: float,
                 vertical_adjustment: float,
