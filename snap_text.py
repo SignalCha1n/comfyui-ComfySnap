@@ -1,4 +1,4 @@
-# File: snap_text_basic.py
+# File: snap_text.py
 import torch
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont

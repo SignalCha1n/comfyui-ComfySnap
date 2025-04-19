@@ -20,7 +20,7 @@ class BaseNode:
 
 # --- Define the filenames for remaining node files ---
 NODE_FILES = [
-    "snap_text_basic",
+    "snap_text",
     "face_avoid",
     "snap_filters",
     "snap_effects"
