@@ -26,12 +26,9 @@ NODE_FILES = [
     "snap_effects"
 ]
 
-NODE_CLASS_MAPPINGS = {
-    "SnapTextOverlay": SnapTextOverlay,
-}
-NODE_DISPLAY_NAME_MAPPINGS = {
-    "SnapTextOverlay": "Snap Text",
-}
+# Initialize empty mapping dictionaries - will be populated by the dynamic loader
+NODE_CLASS_MAPPINGS = {}
+NODE_DISPLAY_NAME_MAPPINGS = {}
 current_dir = os.path.dirname(__file__); package_name = os.path.basename(current_dir)
 
 def load_mappings_from_module(module_name, package_name):
