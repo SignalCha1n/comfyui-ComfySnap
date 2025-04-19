@@ -1,25 +1,26 @@
 # Snap Style Nodes for ComfyUI
 
-A collection of custom nodes for ComfyUI designed to replicate certain visual elements and effects reminiscent of Snap and early digital aesthetics.
+A collection of custom nodes for ComfyUI designed to replicate certain visual elements and effects reminiscent of Snap and early digital aesthetics. These nodes are ideal for image processing tasks and are fully compatible with ComfyUI.
+
+## Metadata
+
+- **Keywords**: ComfyUI, Custom Nodes, Image Processing, Snap Effects, Filters, Overlays
+- **Repository Name**: ComfySnap
 
 ## Installation
 
-**Recommended: Using ComfyUI Manager**
-
-1.  Install [ComfyUI Manager](https://github.com/ltdrdata/ComfyUI-Manager) if you haven't already.
-2.  Open ComfyUI Manager from the menu in ComfyUI.
-3.  Click "Install Custom Nodes".
-4.  Search for "[ComfySnap]" and click "Install".
-5.  Restart ComfyUI.
-
 **Manual Installation**
 
-1.  Navigate to your ComfyUI `custom_nodes` directory.
-2.  Clone this repository:
+Since this repository is not yet listed in the ComfyUI Manager, you can install it manually:
+
+1. Navigate to your ComfyUI `custom_nodes` directory.
+2. Clone this repository:
     ```bash
-    git clone [https://github.com/SignalCha1n/ComfySnap]
+    git clone https://github.com/SignalCha1n/ComfySnap
     ```
-3.  Restart ComfyUI.
+3. Restart ComfyUI.
+
+Once the repository is added to the ComfyUI Manager, you will be able to install it directly from the manager.
 
 ## Included Nodes
 
@@ -120,6 +121,20 @@ Simulates the artifacts and noise typical of early digital cameras or low-light 
 
 ---
 
+## Usage Examples
+
+### Snap Text Overlay
+```python
+from comfy.snap_text_basic import SnapTextOverlay
+# Example usage of SnapTextOverlay
+```
+
+### Basic Filters
+```python
+from comfy.snap_filters import SnapBasicFilters
+# Example usage of SnapBasicFilters
+```
+
 ## Dependencies
 
 These nodes rely on standard Python libraries (`os`, `datetime`, `random`, `io`) and libraries typically included with ComfyUI (`torch`, `numpy`, `PIL`/`Pillow`). No external installation should be required beyond having a standard ComfyUI setup.
@@ -153,6 +168,4 @@ This will run all unit tests and provide a summary of the results. Ensure all de
 
 ## License
 
-(MIT License)
-
----
+This project is licensed under the MIT License. See the LICENSE file for details.
