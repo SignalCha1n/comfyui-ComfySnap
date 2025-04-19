@@ -1,4 +1,4 @@
-# File: snapchat_effects.py
+# File: snap_effects.py
 import torch
 import numpy as np
 from PIL import Image, ImageEnhance
@@ -7,18 +7,18 @@ import random
 
 class LowQualityDigitalLook:
     """
-    Applies simulated low-quality digital camera/Snapchat effects.
+    Applies simulated low-quality digital camera/Snap effects.
     Uses an effect_level slider (0=off, 0.5=preset default, 1=max effect).
     Includes Gaussian noise and JPEG compression.
     """
-    PRESET_MODES = ["Standard Snapchat Low Light", "Early 2000s Digital"]
+    PRESET_MODES = ["Standard Snap Low Light", "Early 2000s Digital"]
 
     @classmethod
     def INPUT_TYPES(s):
         return {
             "required": {
                 "image": ("IMAGE",),
-                "preset": (s.PRESET_MODES, {"default": "Standard Snapchat Low Light"}),
+                "preset": (s.PRESET_MODES, {"default": "Standard Snap Low Light"}),
                 "effect_level": ("FLOAT", {"default": 0.5, "min": 0.0, "max": 1.0, "step": 0.01}),
                 "seed": ("INT", { "default": 0, "min": 0, "max": 4294967295 }),
             }
@@ -34,7 +34,7 @@ class LowQualityDigitalLook:
         seed = max(0, min(4294967295, seed)); np.random.seed(seed)
         batch_size, img_height, img_width, channels = image.shape; output_images = []
 
-        if preset == "Standard Snapchat Low Light": base_jpeg_quality = 70; base_noise_std_dev = 8.0; base_saturation = 0.9; base_brightness = 0.95; jpeg_subsampling = 0 # Default (often 4:4:4 or 4:2:2)
+        if preset == "Standard Snap Low Light": base_jpeg_quality = 70; base_noise_std_dev = 8.0; base_saturation = 0.9; base_brightness = 0.95; jpeg_subsampling = 0 # Default (often 4:4:4 or 4:2:2)
         elif preset == "Early 2000s Digital": base_jpeg_quality = 50; base_noise_std_dev = 15.0; base_saturation = 0.8; base_brightness = 1.0; jpeg_subsampling = 2 # Use 4:2:0 for more color artifacts
         else: base_jpeg_quality = 75; base_noise_std_dev = 5.0; base_saturation = 1.0; base_brightness = 1.0; jpeg_subsampling = 0
 

@@ -1,12 +1,12 @@
-# File: snapchat_filters.py
+# File: snap_filters.py
 import torch
 import numpy as np
 from PIL import Image, ImageEnhance, ImageOps
 import random
 
-class SnapchatBasicFilters:
+class SnapBasicFilters:
     """
-    Applies basic Snapchat-style color filters to an image,
+    Applies basic Snap-style color filters to an image,
     with options to randomize filter type and strength.
     """
     FILTER_TYPES = ["original", "grayscale", "vivid", "cooler", "warmer", "brighter", "darker"]
@@ -33,6 +33,10 @@ class SnapchatBasicFilters:
     def execute(self, image: torch.Tensor, filter_type: str, strength: float,
                      randomize_filter: bool, randomize_strength: bool, seed: int,
                      random_strength_min: float, random_strength_max: float):
+
+        # Add validation for filter type
+        if filter_type not in self.FILTER_TYPES:
+            raise ValueError(f"Invalid filter type '{filter_type}'. Valid options are: {self.FILTER_TYPES}.")
 
         actual_filter_type = filter_type; actual_strength = strength
         if randomize_filter or randomize_strength: random.seed(seed)
@@ -85,5 +89,5 @@ class SnapchatBasicFilters:
         output_tensor = torch.stack(output_images)
         return (output_tensor,)
 
-NODE_CLASS_MAPPINGS = { "SnapchatBasicFilters": SnapchatBasicFilters }
-NODE_DISPLAY_NAME_MAPPINGS = { "SnapchatBasicFilters": "Snapchat Basic Filters" }
+NODE_CLASS_MAPPINGS = { "SnapBasicFilters": SnapBasicFilters }
+NODE_DISPLAY_NAME_MAPPINGS = { "SnapBasicFilters": "Snap Basic Filters" }

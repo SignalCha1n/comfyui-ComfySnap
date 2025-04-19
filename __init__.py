@@ -1,14 +1,29 @@
-# File: __init__.py (in your node package directory, e.g., MySnapchatNodes)
+# File: __init__.py (in your node package directory, e.g., MySnapNodes)
 import importlib
 import traceback
 import os
+import logging
+
+# Add a base node class for standardizing input/output handling
+class BaseNode:
+    def __init__(self):
+        self.logger = logging.getLogger(self.__class__.__name__)
+
+    def log_error(self, message):
+        self.logger.error(message)
+
+    def log_warning(self, message):
+        self.logger.warning(message)
+
+    def log_info(self, message):
+        self.logger.info(message)
 
 # --- Define the filenames for remaining node files ---
 NODE_FILES = [
-    "snapchat_text_basic",
+    "snap_text_basic",
     "face_avoid",
-    "snapchat_filters",
-    "snapchat_effects"
+    "snap_filters",
+    "snap_effects"
 ]
 
 NODE_CLASS_MAPPINGS = {}; NODE_DISPLAY_NAME_MAPPINGS = {}

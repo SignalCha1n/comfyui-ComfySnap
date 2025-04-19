@@ -32,6 +32,10 @@ class FaceAvoidRandomY:
                 vertical_adjustment: float,
                 avoid_threshold: float, seed: int, generate_random: bool):
 
+        # Add validation for mask dimensions
+        if mask.dim() != 3:
+            raise ValueError("Input mask must be a 3D tensor with shape (batch_size, height, width).")
+
         if mask.dim() != 3: raise ValueError("FaceAvoidRandomY: Input mask must be (batch, height, width).")
         batch_size, height, width = mask.shape; scaled_center_y = 50.0
 

@@ -1,6 +1,6 @@
 # Snap Style Nodes for ComfyUI
 
-A collection of custom nodes for ComfyUI designed to replicate certain visual elements and effects reminiscent of Snapchat and early digital aesthetics.
+A collection of custom nodes for ComfyUI designed to replicate certain visual elements and effects reminiscent of Snap and early digital aesthetics.
 
 ## Installation
 
@@ -9,7 +9,7 @@ A collection of custom nodes for ComfyUI designed to replicate certain visual el
 1.  Install [ComfyUI Manager](https://github.com/ltdrdata/ComfyUI-Manager) if you haven't already.
 2.  Open ComfyUI Manager from the menu in ComfyUI.
 3.  Click "Install Custom Nodes".
-4.  Search for "[Your Package Name Here, e.g., SnapNodes]" and click "Install".
+4.  Search for "[ComfySnap]" and click "Install".
 5.  Restart ComfyUI.
 
 **Manual Installation**
@@ -17,19 +17,19 @@ A collection of custom nodes for ComfyUI designed to replicate certain visual el
 1.  Navigate to your ComfyUI `custom_nodes` directory.
 2.  Clone this repository:
     ```bash
-    git clone [Your GitHub Repo URL]
+    git clone [https://github.com/SignalCha1n/ComfySnap]
     ```
 3.  Restart ComfyUI.
 
 ## Included Nodes
 
-This package currently includes the following nodes, which will appear under the **"snap"** category when adding nodes:
+This package currently includes the following nodes, which will appear under the **"Snap"** category when adding nodes:
 
 ---
 
-### 1. Snapchat Text (`SnapchatTextBarOverlay`)
+### 1. Snap Text (`SnapTextOverlay`)
 
-Adds a Snapchat-style semi-transparent text bar overlay to an image. Supports automatic text wrapping based on pixel width and various placement options.
+Adds a Snap-style semi-transparent text bar overlay to an image. Supports automatic text wrapping based on pixel width and various placement options.
 
 **Inputs:**
 
@@ -40,7 +40,7 @@ Adds a Snapchat-style semi-transparent text bar overlay to an image. Supports au
     * Default: "middle"
 * `custom_vertical_percentage` (FLOAT): Sets the vertical position when `vertical_placement` is "custom". Uses a 0-100 scale where 0 = Bottom edge placement, 100 = Top edge placement for the bar's top edge. Default: 0.0.
 * `text_color` (COLOR): The color of the text. Default: White (#FFFFFF).
-* `font_name` (STRING): The filename of the font to use (e.g., `arialbd.ttf`, `segoeui.ttf`). It will attempt to load a bold variant first if available. Default: `arialbd.ttf`.
+* `font_name` (STRING): The filename of the font to use (e.g., `arial.ttf`, `segoeui.ttf`). 
 * `font_size_ratio` (FLOAT): Sets the font size relative to the image width. Default: 0.05 (5% of width).
 * `vertical_padding_ratio_of_size` (FLOAT): Defines the total vertical padding (space above + below text) relative to the calculated font size. A value of 0.7 means padding is 70% of the font size. Adjusts bar height dynamically. Default: 0.7.
 * `line_spacing` (INT): Pixel spacing between lines if the text wraps. Default: 4.
@@ -74,15 +74,15 @@ Calculates the vertical center of a face mask and generates a random vertical po
 
 ---
 
-### 3. Snapchat Basic Filters (`SnapchatBasicFilters`)
+### 3. Basic Filters (`BasicFilters`)
 
-Applies simple color grading filters reminiscent of basic Snapchat swipe filters. Allows randomization of filter type and strength.
+Applies simple color grading filters reminiscent of basic Snap swipe filters. Allows randomization of filter type and strength.
 
 **Inputs:**
 
 * `image` (IMAGE): The input image.
 * `filter_type` (COMBO): Select the desired filter effect.
-    * Options: "original", "grayscale", "sepia", "vivid", "cooler", "warmer", "brighter", "darker"
+    * Options: "original", "grayscale", "vivid", "cooler", "warmer", "brighter", "darker"
     * Default: "original"
 * `strength` (FLOAT): Blends the filtered image with the original (0.0 = original, 1.0 = full filter effect). Default: 1.0.
 * `randomize_filter` (BOOLEAN): If True, ignores `filter_type` and randomly selects an actual filter (excludes "original"). Default: False.
@@ -99,14 +99,14 @@ Applies simple color grading filters reminiscent of basic Snapchat swipe filters
 
 ### 4. Low Quality Digital Look (`LowQualityDigitalLook`)
 
-Simulates the artifacts and noise typical of early digital cameras or low-light photos from platforms like Snapchat. Applies JPEG compression and Gaussian noise.
+Simulates the artifacts and noise typical of early digital cameras or low-light photos. Applies JPEG compression and Gaussian noise.
 
 **Inputs:**
 
 * `image` (IMAGE): The input image.
 * `preset` (COMBO): Choose a predefined set of parameters.
-    * Options: "Standard Snapchat Low Light", "Early 2000s Digital"
-    * Default: "Standard Snapchat Low Light"
+    * Options: "Standard Snap Low Light", "Early 2000s Digital"
+    * Default: "Standard Snap Low Light"
 * `effect_level` (FLOAT): Controls the overall intensity of the effect.
     * 0.0 = No effect (original image).
     * 0.5 = The standard effect defined by the chosen `preset`.
@@ -124,8 +124,35 @@ Simulates the artifacts and noise typical of early digital cameras or low-light 
 
 These nodes rely on standard Python libraries (`os`, `datetime`, `random`, `io`) and libraries typically included with ComfyUI (`torch`, `numpy`, `PIL`/`Pillow`). No external installation should be required beyond having a standard ComfyUI setup.
 
+## Testing
+
+To run tests, ensure you have `pytest` installed. If not, install it using:
+```bash
+pip install pytest
+```
+
+Navigate to the `tests/` directory and execute:
+```bash
+pytest
+```
+
+This will run all unit tests and provide a summary of the results. Ensure all dependencies listed in `requirements.txt` are installed before running the tests.
+
+## Known Limitations
+
+1. The nodes assume valid input formats (e.g., 4D tensors for images, 3D tensors for masks). Invalid inputs may result in errors.
+2. Font availability depends on the system. Ensure the specified font file exists or use a fallback font.
+3. Randomized outputs may vary depending on the seed value.
+4. Processing large images or batches may lead to performance issues.
+
+## Best Practices
+
+1. Use the provided `requirements.txt` to install dependencies with compatible versions.
+2. Test the nodes with a variety of inputs to ensure expected behavior.
+3. Profile the code for performance bottlenecks if processing large datasets.
+
 ## License
 
-(You should add a LICENSE file to your repository and state the license here, e.g., MIT License)
+(MIT License)
 
 ---

@@ -1,12 +1,13 @@
-# File: snapchat_text_basic.py
+# File: snap_text_basic.py
 import torch
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 import os
+from utils import hex_to_rgb
 
-class SnapchatTextBarOverlay:
+class SnapTextOverlay:
     """
-    Applies a basic Snapchat-style text overlay with a semi-transparent bar.
+    Applies a basic Snap-style text overlay with a semi-transparent bar.
     Supports text wrapping and various placement options.
     """
 
@@ -69,14 +70,16 @@ class SnapchatTextBarOverlay:
                 custom_vertical_percentage: float, text_color: str, bar_color: str,
                 bar_alpha: float):
 
+        # Add input validation for image shape
+        if len(image.shape) != 4:
+            raise ValueError("Input image must be a 4D tensor with shape (batch_size, height, width, channels).")
+
+        # Add validation for font availability
+        if not os.path.exists(font_name):
+            raise FileNotFoundError(f"Font file '{font_name}' not found. Please ensure the font is available.")
+
         text = str(text); batch_size, img_height, img_width, channels = image.shape
         output_images = [];
-
-        def hex_to_rgb(hex_color):
-            hex_color = hex_color.lstrip('#'); l = len(hex_color)
-            if l==3: return tuple(int(hex_color[i]*2, 16) for i in range(3))
-            if l==6: return tuple(int(hex_color[i:i+2], 16) for i in (0, 2, 4))
-            return (255,255,255)
 
         bar_rgb = hex_to_rgb(bar_color); text_rgb = hex_to_rgb(text_color)
         alpha_int = int(bar_alpha * 255); bar_rgba = bar_rgb + (alpha_int,)
@@ -146,5 +149,5 @@ class SnapchatTextBarOverlay:
         output_tensor = torch.stack(output_images)
         return (output_tensor,)
 
-NODE_CLASS_MAPPINGS = { "SnapchatTextBarOverlay": SnapchatTextBarOverlay }
-NODE_DISPLAY_NAME_MAPPINGS = { "SnapchatTextBarOverlay": "Snapchat Text" }
+NODE_CLASS_MAPPINGS = { "SnapTextOverlay": SnapTextOverlay }
+NODE_DISPLAY_NAME_MAPPINGS = { "SnapTextOverlay": "Snap Text" }
