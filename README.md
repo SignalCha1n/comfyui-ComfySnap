@@ -121,20 +121,6 @@ Simulates the artifacts and noise typical of early digital cameras or low-light 
 
 ---
 
-## Usage Examples
-
-### Snap Text Overlay
-```python
-from comfy.snap_text_overlay import SnapTextOverlay
-# Example usage of SnapTextOverlay
-```
-
-### Basic Filters
-```python
-from comfy.snap_basic_filters import BasicFilters
-# Example usage of BasicFilters
-```
-
 ## Dependencies
 
 These nodes rely on standard Python libraries (`os`, `datetime`, `random`, `io`) and libraries typically included with ComfyUI (`torch`, `numpy`, `PIL`/`Pillow`). No external installation should be required beyond having a standard ComfyUI setup.
