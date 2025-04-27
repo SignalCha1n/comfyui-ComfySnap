@@ -1,0 +1,15 @@
+[project]
+name = "snap"
+description = "A collection of custom nodes for ComfyUI designed to replicate certain visual elements and effects reminiscent of Snap and early digital aesthetics. These nodes are ideal for image processing tasks and are fully compatible with ComfyUI."
+version = "1.0.0"
+license = {file = "LICENSE"}
+dependencies = ["torch==1.13.1", "Pillow==9.4.0", "numpy==1.24.2"]
+
+[project.urls]
+Repository = "https://github.com/SignalCha1n/comfyui-ComfySnap"
+#  Used by Comfy Registry https://comfyregistry.org
+
+[tool.comfy]
+PublisherId = "signalchain"
+DisplayName = "comfyui-ComfySnap"
+Icon = ""
